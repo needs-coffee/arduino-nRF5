@@ -90,9 +90,19 @@ POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 /* Redefine "old" too-generic name NRF52 to NRF52832_XXAA to keep backwards compatibility. */
-#if defined (NRF52)
-    #ifndef NRF52832_XXAA
-        #define NRF52832_XXAA
+/* only do this if a specific MCU part is not defined to avoid redefining as NRF52832_XXAA */
+#if !defined(NRF52805_XXAA) &&\
+    !defined(NRF52810_XXAA) &&\
+    !defined(NRF52811_XXAA) &&\
+    !defined(NRF52820_XXAA) &&\
+    !defined(NRF52832_XXAA) &&\
+    !defined(NRF52832_XXAB) &&\
+    !defined(NRF52833_XXAA) &&\
+    !defined(NRF52840_XXAA)
+    #if defined (NRF52)
+        #ifndef NRF52832_XXAA
+            #define NRF52832_XXAA
+        #endif
     #endif
 #endif
 
